@@ -1,7 +1,25 @@
 // event listener on the button to start the game
-​
+var startButton = document.querySelector("#start-button");
+var timerEl = document.querySelector("#timer");
+
+secondsLeft = 60;
+
+startButton.addEventListener("click", function() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timerEl.innerHTML = secondsLeft + "test";
+        console.log(secondsLeft);
+        
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+        }
+        
+    }, 1000);
+})
+
+
 /* Starting the game */
-​
 // A timer starts and is displayed on the page.
 // set a variable that has the number of milliseconds
 // Will need to setup a setinterval function
@@ -96,9 +114,9 @@ var questions =  [
             // Grab the initial array from localstorage, if there is one, and convert it, otherwise use an empty array
             // take the score and initials, put it into an array, stringify that array, and then put it in localstorage
             // You'll save that score, and the initials to localStorage
-var highscores = [
-    {
-        score:
-        initials:
-    }
-]
+        // var highscores = [
+//     {
+//         // score:
+//         // initials:
+//     }
+// ]
