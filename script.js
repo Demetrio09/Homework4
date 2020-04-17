@@ -1,34 +1,41 @@
 // event listener on the button to start the game
+
 var startButton = document.querySelector("#start-button");
 var timerEl = document.querySelector("#timer");
+var score = 0;
+var questionNum = 0;
 
-secondsLeft = 60;
-
-startButton.addEventListener("click", function() {
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timerEl.innerHTML = secondsLeft + "test";
-        console.log(secondsLeft);
-        
-
-        if(secondsLeft === 0) {
-            clearInterval(timerInterval);
-        }
-        
-    }, 1000);
-})
-
-
-/* Starting the game */
+/* Starting the game / when click 'start' change h1 and new h4 with the questions */
 // A timer starts and is displayed on the page.
 // set a variable that has the number of milliseconds
 // Will need to setup a setinterval function
 // if variable reaches 0, clear the timer, example is in 4.08
 // Make sure it works for like 10 seconds and doesn't go below 0, ex no negatives
 // clear the timer when it hits 0
+
+var secondsLeft = 60;
+
+startButton.addEventListener("click", function() {
+
+    console.log("works")    
+
+    // var timerInterval = setInterval(function() {
+    //     secondsLeft--;
+    //     timerEl.textContent = secondsLeft + "test";
+    //     console.log(secondsLeft);
+        
+
+    //     if(secondsLeft === 0) {
+    //         clearInterval(timerInterval);
+    //     }
+        
+    // }, 1000);
+});
+
+
+
 // clear the middle section and display first question
-​
-/* Logic of the quiz */
+// /* Logic of the quiz */
 // Need something keeping track of score
 ​
 // Need a list of multichoice questions
@@ -37,6 +44,9 @@ startButton.addEventListener("click", function() {
 // answers
 // which answer is right, and which are wrong
 // the actual question
+
+
+// make function: setQuestions 
 var questions =  [
     {
         question: "Commonly used data types DO NOT include:",
