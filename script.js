@@ -1,132 +1,114 @@
-// event listener on the button to start the game
-
-var startButton = document.querySelector("#start-button");
+var codingQuizEl = document.querySelector("#h2");
+var instructionsEl = document.getElementById("p");
+var startButtonEl = document.querySelector("#start-button");
+var questionsEl = document.querySelector("#h2");
+var answersEl = document.getElementById("paragraph");
+var answerEl = document.body;
 var timerEl = document.querySelector("#timer");
 var score = 0;
-var questionNum = 0;
+// Event lister on the button to start the game.
 
-/* Starting the game / when click 'start' change h1 and new h4 with the questions */
-// A timer starts and is displayed on the page.
-// set a variable that has the number of milliseconds
-// Will need to setup a setinterval function
-// if variable reaches 0, clear the timer, example is in 4.08
-// Make sure it works for like 10 seconds and doesn't go below 0, ex no negatives
-// clear the timer when it hits 0
+var secondsLeft = 31;
 
-var secondsLeft = 60;
+startButtonEl.addEventListener("click", function() {
+    var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timerEl.textContent = secondsLeft;
 
-startButton.addEventListener("click", function() {
+    if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        // call function with alert to stop game to continue runnig unless refresh the page
+        alert("Times up!");
+    }    
+}, 1000);
+// setQuestions();
+})
 
-    console.log("works")    
+// function setQuestions.
+// when user clicks stars needs to run a star game function
+    // timerInterval starts
+    // run a function with for loop to loop for the questions array
+    // append first question on ducument
+    // appen list of anwsers using DOM
 
-    // var timerInterval = setInterval(function() {
-    //     secondsLeft--;
-    //     timerEl.textContent = secondsLeft + "test";
-    //     console.log(secondsLeft);
-        
+// function setQuestions() {
 
-    //     if(secondsLeft === 0) {
-    //         clearInterval(timerInterval);
-    //     }
-        
-    // }, 1000);
+startButtonEl.addEventListener("click", function() {    
+    codingQuizEl.innerHTML = "";
+    codingQuizEl.className = "col-8 align-self-center"
+    instructionsEl.remove();
+    startButtonEl.remove();
+
+    for (var i = 0; i < questions.length; i++) {
+        var questionsLoop = Math.floor(Math.random() * questions.length);
+        var selectedQuestion = questions[questionsLoop].question;
+        console.log(selectedQuestion);
+        questionsEl.textContent = selectedQuestion;
+
+    }
 });
 
+// questions object.
+
+var questions = [{
+    question: "What kind of statement is used to execute actions based on a trigger or condition?",
+    answers: [
+        "Conditional Statement",
+        "Boolean Variable",
+        "RegExp or Regular Expression",
+        "Fired Event"
+    ],
+    correctAnswer: "Conditional Statement"
+},
+{
+    question: "In JavaScript, what element is used to store multiple values in a single variable?",
+    answers: [
+        "Functions",
+        "Arrays",
+        "Variables",
+        "Strings"
+    ],
+    correctAnswer: "Arrays"
+},
+{
+    question: "What is a JavaScript element that represents either TRUE or FALSE values?",
+    answers: [
+        "Event",
+        "Condition",
+        "RegExp",
+        "Boolean"
+    ],
+    correctAnswer: "Boolean"
+},
+{
+    question: "What elements are used to test for TRUE or False values stored in variables?",
+    answers: [
+        "Comparison and logical operators.",
+        "Trigger readers.",
+        "Conditional statements.",
+        "RegExp or Regular Expressions."
+    ],
+    correctAnswer: "Comparison and logical operators."
+},
+{
+    question: "What is considered to be the most popular programming language in the world?",
+    answers: [
+        "Ruby",
+        "HTML",
+        "Swift",
+        "JavaScript"
+    ],
+    correctAnswer: "JavaScript"
+}];
 
 
-// clear the middle section and display first question
-// /* Logic of the quiz */
-// Need something keeping track of score
-​
-// Need a list of multichoice questions
-// list of questions inside array.
-// what makes a question:
-// answers
-// which answer is right, and which are wrong
-// the actual question
+// parts of the function
 
-
-// make function: setQuestions 
-var questions =  [
-    {
-        question: "Commonly used data types DO NOT include:",
-        answers: [
-            "strings",
-            "booleans",
-            "alerts",
-            "numbers"
-        ],
-        correctAnswer: "alerts"
-    },
-    {
-        question: "Commonly used data types DO NOT include:",
-        answers: [
-            "answer1",
-            "answer2",
-            "answer3"
-        ],
-        correctAnswer: "answer2"
-    },
-    {
-        question: "Commonly used data types DO NOT include:",
-        answers: [
-            "answer1",
-            "answer2",
-            "answer3"
-        ],
-        correctAnswer: "answer2"
-    },
-    {
-        question: "Commonly used data types DO NOT include:",
-        answers: [
-            "answer1",
-            "answer2",
-            "answer3"
-        ],
-        correctAnswer: "answer2"
-    },
-    {
-        question: "Commonly used data types DO NOT include:",
-        answers: [
-            "answer1",
-            "answer2",
-            "answer3"
-        ],
-        correctAnswer: "answer2"
-    }
-]
-​
-/* Putting a question on the page */
-// Counter variable starting at 0.
-// Take the first question from the array, this will be an object
-// Grab the title of the question and put it on the page with javascript
-// Grab the answers of the question
-    // Loop through the answers
-    // Put the answers in individual buttons
-    // Have some data on the buttons indicating the value inside (hint data-answer)
-    // event listener to click those answers
-        // when you click the answer, you grab the value of that button and compare to the correct answer
-            // if right, you can keep score the same or increase
-            // if wrong, you can lower the score
-        // after comparison and score calculation,
-            // old question disappears, new question appears
-                // increase the counter by 1 to get to the next question
-            // compare counter to length of the array, if less go to next question
-                // repeat everything we did above
-        // once the counter is equal to length of the array, we don't show the next question, the game ends
-​
-        // Last screen all done
-            // Title
-            // Your final score
-            // input
-            // submit button
-        // Once you submit the score
-            // Grab the initial array from localstorage, if there is one, and convert it, otherwise use an empty array
-            // take the score and initials, put it into an array, stringify that array, and then put it in localstorage
-            // You'll save that score, and the initials to localStorage
-        // var highscores = [
-//     {
-//         // score:
-//         // initials:
-//     }
-// ]
+/* 
+        // questionsEl.appendChild(questionsLoop);
+        questionsEl.firstElementChild.textContent = questionsLoop;
+        var answerButtons = document.createElement("button");
+        // answerButtons.textContent = "questions[i].answers[i]";        
+        // document.body.answerButtons.appendChild(answerButtons);
+  }
+*/
