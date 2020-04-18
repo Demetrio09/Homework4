@@ -31,7 +31,7 @@ startButtonEl.addEventListener("click", function() {
     // append first question on ducument
     // appen list of anwsers using DOM
 
-// function setQuestions() {
+// function setQuestions() / grabs a array and a value from a key object and append to the document
 
 startButtonEl.addEventListener("click", function() {    
     codingQuizEl.innerHTML = "";
@@ -45,7 +45,18 @@ startButtonEl.addEventListener("click", function() {
         console.log(selectedQuestion);
         questionsEl.textContent = selectedQuestion;
 
+        for (var i = 0; i < questions[i].answers.length; i++) {
+            answerButtonsEl = document.createElement("button");
+            answersEl.className = "row justify-content-center";
+            answersEl.nodeType = "button";
+            answerButtonsEl.className = "btn-sm btn btn-outline-secondary";
+            answerButtonsEl.textContent = questions[questionsLoop].answers[i];
+            answersEl.appendChild(answerButtonsEl);
+            console.log(i);
+            console.log(answerButtonsEl)
+            }
     }
+    
 });
 
 // questions object.
