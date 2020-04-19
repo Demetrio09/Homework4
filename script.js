@@ -11,6 +11,7 @@ var score = 0;
 var secondsLeft = 31;
 
 startButtonEl.addEventListener("click", function() {
+    setQuestions();
     var timerInterval = setInterval(function() {
     secondsLeft--;
     timerEl.textContent = secondsLeft;
@@ -21,7 +22,7 @@ startButtonEl.addEventListener("click", function() {
         alert("Times up!");
     }    
 }, 1000);
-// setQuestions();
+
 })
 
 // function setQuestions.
@@ -33,7 +34,7 @@ startButtonEl.addEventListener("click", function() {
 
 // function setQuestions() / grabs a array and a value from a key object and append to the document
 
-startButtonEl.addEventListener("click", function() {    
+function setQuestions() {    
     codingQuizEl.innerHTML = "";
     codingQuizEl.className = "col-8 align-self-center"
     instructionsEl.remove();
@@ -56,8 +57,12 @@ startButtonEl.addEventListener("click", function() {
             console.log(answerButtonsEl)
             }
     }
-    
-});
+// conditional statments
+answerButtonsEl.addEventListener("click", function() {
+    if (answerButtonsEl !== questions.correctAnswer) {
+        alert("works")
+    }
+})};
 
 // questions object.
 
@@ -110,16 +115,4 @@ var questions = [{
         "JavaScript"
     ],
     correctAnswer: "JavaScript"
-}];
-
-
-// parts of the function
-
-/* 
-        // questionsEl.appendChild(questionsLoop);
-        questionsEl.firstElementChild.textContent = questionsLoop;
-        var answerButtons = document.createElement("button");
-        // answerButtons.textContent = "questions[i].answers[i]";        
-        // document.body.answerButtons.appendChild(answerButtons);
-  }
-*/
+}]
