@@ -57,12 +57,23 @@ function setQuestions() {
             console.log(answerButtonsEl)
             }
     }
+    answerButtonsEl.addEventListener("click", checkAnswer);
+};
+
+
+
 // conditional statments
-answerButtonsEl.addEventListener("click", function() {
-    if (answerButtonsEl !== questions.correctAnswer) {
-        alert("works")
+function checkAnswer() {
+    if (answerButtonsEl == questions.correctAnswer) {
+        // answer is correct
+        score++;
+    } else {
+        // answer is wrong
+        score--;
     }
-})};
+}
+console.log(score);
+
 
 // questions object.
 
@@ -115,4 +126,7 @@ var questions = [{
         "JavaScript"
     ],
     correctAnswer: "JavaScript"
-}]
+}];
+
+var lastQuestion = questions.length - 1;
+var runningQuestion = 0;
