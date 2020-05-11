@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
     <!-- Title of page -->
     <!-- List of high scores -->
     <!-- Button that goes back to the game -->
     <!-- Clear scores button -->
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2 class="col-4 align-self-center p-2" id="h2">High Scores</h2>
+            </div>
+            <div class="row justify-content-center" id="paragraph">
+                <ol class="col-6 align-self-center p-2" id="highscores-list"></ol>
+            </div>
+            <div class="row justify-content-center p-2">
+                <button id="start-button" type="button" class="btn btn-outline-secondary"><a href="index.html">Go Back</a></button>
+                <button id="start-button" type="button" class="btn btn-outline-secondary">Clear Results</button>
+            </div>
+        </div>
+    </main>
     <script src="highscores.js"></script>
 </body>
+
 </html>
