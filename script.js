@@ -1,12 +1,13 @@
-var codingQuizEl = document.querySelector("#h2");
+// var questionsEl = document.querySelector("#h2");
 var instructionsEl = document.getElementById("p");
 var startButtonEl = document.querySelector("#start-button");
 var questionsEl = document.querySelector("#h2");
+var textEl = document.querySelector("#text");
 var answersEl = document.getElementById("buttons-div");
-var answerEl = document.body;
 var timerEl = document.querySelector("#timer");
 var score = 0;
 var questionsCount = 0;
+
 // Event lister on the button to start the game.
 
 var secondsLeft = 60;
@@ -21,7 +22,7 @@ startButtonEl.addEventListener("click", function () {
             clearInterval(timerInterval);
             // call function with alert to stop game to continue runnig unless refresh the page
             console.log("times up");
-            //endGame(); function
+            endGame();
         }
     }, 1000);
 
@@ -37,12 +38,12 @@ startButtonEl.addEventListener("click", function () {
 // function setQuestions() / grabs a array and a value from a key object and append to the document
 
 function setQuestions() {
-    codingQuizEl.innerHTML = "";
-    codingQuizEl.className = "col-8 align-self-center"
+    questionsEl.innerHTML = "";
+    questionsEl.className = "col-8 align-self-center"
     instructionsEl.remove();
     startButtonEl.remove();
     questionsCount++;
-    console.log(questionsCount);
+    // console.log(questionsCount);
 
 
     for (var i = 0; i < questions.length; i++) {
@@ -67,8 +68,9 @@ function setQuestions() {
             var check = document.getElementById(i);
             if (questionsCount === 5) {
                 console.log("end game")
+                check.addEventListener("click", endGame);
             } else {
-            check.addEventListener("click", checkAnswer);
+                check.addEventListener("click", checkAnswer);
             }
         }
     }
@@ -97,9 +99,24 @@ function checkAnswer() {
         removeBtn.remove();
     }
 
-    codingQuizEl.innerHTML = "";
+    questionsEl.innerHTML = "";
     console.log(score);
     setQuestions();
+}
+
+// var userName = document.createElement("input");
+// userName.setAttribute("class", "form-control");
+
+
+function endGame() {
+    timerEl.remove();
+    questionsEl.innerHTML = "Your score was: " + "\n" + score;
+    var userName = prompt("End of game " + "\n" + " Please enter your name:")
+    document.getElementById("0").innerHTML = "Submit";
+    for (var i = 1; i <= 3; i++) {
+        var removeBtn = document.getElementById(i);
+        removeBtn.remove();
+    }
 }
 
 
