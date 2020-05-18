@@ -48,9 +48,9 @@ function setQuestions() {
 
     for (var i = 0; i < questions.length; i++) {
         var questionsLoop = Math.floor(Math.random() * questions.length);
-        console.log(questionsLoop);
+        // console.log(questionsLoop);
         var selectedQuestion = questions[questionsLoop].question;
-        console.log(selectedQuestion);
+        // console.log(selectedQuestion);
         questionsEl.setAttribute("data-question", questionsLoop);
         questionsEl.textContent = selectedQuestion;
 
@@ -63,13 +63,11 @@ function setQuestions() {
             answerButtonsEl.setAttribute("id", i);
             answerButtonsEl.textContent = listAnwser;
             answersEl.appendChild(answerButtonsEl);
-            // console.log(i);
-            console.log(answerButtonsEl);
             var check = document.getElementById(i);
             check.addEventListener("click", checkAnswer);
         }
         if (questionsCount === 6) {
-            console.log("end game");
+            // console.log("end game");
             endGame();
         }
     }
@@ -81,9 +79,6 @@ function setQuestions() {
 function checkAnswer() {
     var dataQuestion = questionsEl.getAttribute("data-question");
     var choseAnswer = this.getAttribute("data-answer");
-    console.log(choseAnswer);
-    console.log(questions[dataQuestion].correctAnswer);
-
 
     if (choseAnswer == questions[dataQuestion].correctAnswer) {
         // answer is correct
@@ -99,7 +94,6 @@ function checkAnswer() {
     }
 
     questionsEl.innerHTML = "";
-    console.log(score);
     setQuestions();
 }
 
