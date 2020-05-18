@@ -1,16 +1,17 @@
 // var questionsEl = document.querySelector("#h2");
-var instructionsEl = document.getElementById("p");
-var startButtonEl = document.querySelector("#start-button");
-var questionsEl = document.querySelector("#h2");
-var textEl = document.querySelector("#text");
-var answersEl = document.getElementById("buttons-div");
-var timerEl = document.querySelector("#timer");
-var score = 0;
-var questionsCount = 0;
+const instructionsEl = document.getElementById("p");
+const startButtonEl = document.querySelector("#start-button");
+const questionsEl = document.querySelector("#h2");
+const textEl = document.querySelector("#text");
+const answersEl = document.getElementById("buttons-div");
+const timerEl = document.querySelector("#timer");
+let score = 0;
+let questionsCount = 0;
+let highscores = [];
 
 // Event lister on the button to start the game.
 
-var secondsLeft = 60;
+let secondsLeft = 31;
 
 startButtonEl.addEventListener("click", function () {
     setQuestions();
@@ -21,8 +22,7 @@ startButtonEl.addEventListener("click", function () {
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             // call function with alert to stop game to continue runnig unless refresh the page
-            console.log("times up");
-            endGame();
+            alert("Times up! \n Please refresh the page to start the game again.");
         }
     }, 1000);
 
@@ -66,12 +66,11 @@ function setQuestions() {
             // console.log(i);
             console.log(answerButtonsEl);
             var check = document.getElementById(i);
-            if (questionsCount === 5) {
-                console.log("end game")
-                check.addEventListener("click", endGame);
-            } else {
-                check.addEventListener("click", checkAnswer);
-            }
+            check.addEventListener("click", checkAnswer);
+        }
+        if (questionsCount === 6) {
+            console.log("end game");
+            endGame();
         }
     }
 };
@@ -104,21 +103,23 @@ function checkAnswer() {
     setQuestions();
 }
 
-// var userName = document.createElement("input");
-// userName.setAttribute("class", "form-control");
-
-
 function endGame() {
     timerEl.remove();
-    questionsEl.innerHTML = "Your score was: " + "\n" + score;
-    var userName = prompt("End of game " + "\n" + " Please enter your name:")
-    document.getElementById("0").innerHTML = "Submit";
-    for (var i = 1; i <= 3; i++) {
-        var removeBtn = document.getElementById(i);
-        removeBtn.remove();
-    }
-}
+    questionsEl.innerHTML = "Your score was: " + score + " of 5 questions.";
+    var userName = prompt("End of game " + "\n" + " Please enter your name:");
+    var highScoreBtn = document.createElement("a");
+    highscores.push(userName);
+    highscores.push(score);
+    localStorage.setItem(userName, score);
+    highScoreBtn.className = "btn-sm btn btn-outline-secondary";
+    highScoreBtn.textContent = "View high scores";
+    highScoreBtn.setAttribute("href", "highscores.html");
+    answersEl.appendChild(highScoreBtn);
+    for (let i = 0; i <= 3; i++) {
+        document.getElementById(i).remove();
 
+    };
+};
 
 // questions object.
 
@@ -172,6 +173,3 @@ var questions = [{
     ],
     correctAnswer: "JavaScript"
 }];
-
-var lastQuestion = questions.length - 1;
-var runningQuestion = 0;
